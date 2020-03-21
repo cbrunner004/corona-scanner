@@ -103,7 +103,7 @@ def get_score_from_general_information(info: list) -> float: #i am not sure how 
     score=0.0
     for inf in info:
         try:
-            score += info_dict[previous_disease]
+            score += info_dict[inf]
         except KeyError:
             pass
     
