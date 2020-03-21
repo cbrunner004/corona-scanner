@@ -24,6 +24,20 @@ RESPIRATORY_DISEASES = 'respiratory diseases'
 HIGH_BLOOD_PRESSURE = 'high blood pressure'
 CANCER = 'cancer'
 
+#further questions: infection probability
+STAY_IN_RISK_REGION = 'stay in risk region' #y/n question
+LIVING_SITUATION = 'living situation' #no of people you live with/are in close contact with
+JOB = 'job' #job in health services, cashiers, in daycare, in schools etc.
+CONTACT_TO_INFECTED_PERSON = 'contact to infected person' #y/n
+CONTACT_TO_SUSPECTED_CASE = 'contact to suspected case' #y/n
+#further questions: vulnerability
+#age
+SMOKER = 'smoker' #y/n
+#preexisting conditions
+INTAKE_CORTISONE = 'intake of cortisone' #y/n
+INTAKE_IMMUNOSUPPRESSANTS = 'intake of other immunosuppressants' #y/n
+IMMUNODEFICIENCY = 'immunodefficienciy' #y/n
+
 def get_score_from_age(age: int) -> float:
     age_score_dict = {
         range(80, 120): 14.8,
