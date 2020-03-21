@@ -92,15 +92,15 @@ def get_score_from_previous_diseases(previous_diseases: list) -> float:
     
     return score
 
-def get_score_from_general_information(info: list) -> float: #i am not sure how to properly scale these factors
+def get_score_from_general_information(living_situation: int, info: list) -> float: #i am not sure how to properly scale these factors
     info_dict = {
         STAY_IN_RISK_REGION: 5.0
-        LIVING_SITUATION: 1.0
         JOB: 3.0
         CONTACT_TO_INFECTED_PERSON: 7.0
         CONTACT_TO_SUSPECTED_CASE: 4.0
     }
     score=0.0
+    score=score+(living_situation*1.0) #weight per person: 1.0?
     for inf in info:
         try:
             score += info_dict[inf]
@@ -108,6 +108,25 @@ def get_score_from_general_information(info: list) -> float: #i am not sure how 
             pass
     
     return score
+
+def get_vulnerability_score(age: int, previous_diseases: list, factors: list) -> float:
+    factors_dict = {
+        SMOKER: 1.0
+        INTAKE_CORTISONE = 3.0
+        INTAKE_IMMUNOSUPPRESSANTS = 3.0
+        IMMUNODEFICIENCY = 2.0
+    }
+    score=0.0
+    score=score+get_score_from_age(age)
+    score=score+get_score_from_previous_diseases(previous_diseases)
+    for factor in factors:
+        try:
+            score += factors_dict[factor]
+        except KeyError:
+            pass
+    
+    return score
+
 
 print(get_score_from_age(43))
 print(get_score_from_symptoms([FEVER_LARGE, SORE_THROAT]))
